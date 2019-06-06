@@ -1,5 +1,6 @@
 class PlaylistsController < ApplicationController
   before_action :set_playlist, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:new, :edit]
 
   # GET /playlists
   # GET /playlists.json
@@ -65,6 +66,9 @@ class PlaylistsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_playlist
       @playlist = Playlist.find(params[:id])
+    end
+    def set_user
+      @users_array = User.all.map{|x| [x.name, x.id]}
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
